@@ -1,0 +1,45 @@
+<!doctype html>
+
+<html>
+
+<head>
+<meta charset="utf-8">
+<title>Simple RSS Item</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+<form name="input">
+<label for="title">Title: <input type="text" name="title" id="title" /></label><br />
+<label for="url">URL: <input type="url" name="url" id="url" /></label><br />
+<input type="submit" value="Go" /><br />
+</form>
+
+<textarea id="output" rows="8" cols="40"></textarea>
+</body>
+
+<script id="template" type="text/html">&lt;item&gt;
+&lt;title&gt;{{title}}&lt;/title&gt;
+&lt;guid isPermaLink="true"&gt;{{url}}&lt;/guid&gt;
+&lt;link&gt;{{url}}&lt;/link&gt;
+&lt;/item&gt;</script>
+
+<script>
+document.forms.input.onsubmit = function () {
+  var outputEl, template, title, url;
+
+  template = document.getElementById('template').innerHTML;
+  title = document.getElementById('title').value;
+  url = document.getElementById('url').value;
+  outputEl = document.getElementById('output');
+
+  outputEl.innerHTML = template.replace(/{{title}}/g, title).replace(/{{url}}/g, url);
+
+  outputEl.select();
+
+  return false;
+}
+</script>
+
+</html>
