@@ -32,8 +32,8 @@ document.forms.input.onsubmit = function () {
   var outputEl, template, title, url;
 
   template = document.getElementById('template').innerHTML;
-  title = document.getElementById('title').value.trim();
-  url = document.getElementById('url').value.trim();
+  title = document.getElementById('title').value.trim().replace('&', '&amp;');
+  url = document.getElementById('url').value.trim().replace('&', '&amp;');
   outputEl = document.getElementById('output');
 
   outputEl.innerHTML = template.replace(/{{title}}/g, title).replace(/{{url}}/g, url);
